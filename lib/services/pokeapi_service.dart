@@ -6,7 +6,7 @@ class PokeApiConstants {
   PokeApiConstants._();
 
   static const String baseUrl = 'https://pokeapi.co/api/v2';
-  static const String pokemonsEndpoint = '/pokemon';
+  static const String pokemonsEndpoint = '/pokemon?limit=151';
 }
 
 class PokeApiListResponse {

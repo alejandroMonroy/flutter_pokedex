@@ -24,11 +24,34 @@ class _PokedexViewState extends State<PokedexView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pokédex'),
+        backgroundColor: Get.theme.primaryColor,
+        title: const Text(
+          'Pokédex',
+          style: TextStyle(color: Colors.white),
+        ),
+        leading: IconButton(
+          onPressed: Get.back,
+          icon: const Icon(
+            Icons.arrow_back_ios_rounded,
+            color: Colors.white,
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              PokemonsController.to.disableAllFilters();
+            },
+            icon: const Icon(
+              Icons.clear_all_rounded,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          const SizedBox(height: 16.0),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: Text('Filter by Pokemon type:'),

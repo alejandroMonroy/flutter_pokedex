@@ -84,6 +84,21 @@ class PokemonView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
+                                    '${pokemon.pokemonId}',
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 16.0,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8.0),
+                                  const Text('Nº'),
+                                ],
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
                                     '${pokemon.weight}',
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w700,
@@ -120,6 +135,14 @@ class PokemonView extends StatelessWidget {
                                         Icons.arrow_back_ios_rounded,
                                         color: Colors.white,
                                         size: 16.0,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        pokemon.typeNames.first.toUpperCase(),
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                            color: Colors.white),
                                       ),
                                     ),
                                     SavePokemonButton(pokemon: pokemon),

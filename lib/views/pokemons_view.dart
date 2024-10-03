@@ -13,7 +13,11 @@ class PokemonsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pokemons'),
+        backgroundColor: Get.theme.primaryColor,
+        title: const Text(
+          'Pokemons',
+          style: TextStyle(color: Colors.white),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.all(16.0),

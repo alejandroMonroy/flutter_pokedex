@@ -19,7 +19,23 @@ class SavePokemonButton extends StatelessWidget {
           if (controller.pokemonsInPokedex.firstWhereOrNull(
                   (poke) => poke.pokemonId == pokemon.pokemonId) !=
               null) {
-            PokemonsController.to.removePokemon(pokemon);
+            Get.defaultDialog(
+              titlePadding: const EdgeInsets.all(16.0),
+              contentPadding: const EdgeInsets.all(16.0),
+              title: "Pokedex info",
+              content: const Text("Are you sure?"),
+              cancel: MaterialButton(
+                onPressed: Get.back,
+                child: const Text('Cancel'),
+              ),
+              confirm: MaterialButton(
+                onPressed: () {
+                  PokemonsController.to.removePokemon(pokemon);
+                  Get.back();
+                },
+                child: const Text('Remove'),
+              ),
+            );
           } else {
             PokemonsController.to.savePokemon(pokemon);
           }

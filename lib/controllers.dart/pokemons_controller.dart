@@ -24,8 +24,20 @@ class PokemonsController extends GetxController {
 
   initializeFilters() {
     filters = List.from(pokemoncolors
-        .map((filter) => {...filter, 'isSelected': false, 'count': 0}));
+        .map((filter) => {...filter, 'isSelected': false, 'counter': 0}));
     update();
+  }
+
+  updateTheme() {
+    Get.changeTheme(
+      ThemeData(
+        colorSchemeSeed: filters.first['counter'] > 0 &&
+                filters.first['counter'] > filters[1]['counter']
+            ? Color(filters.first['color'])
+            : Colors.red,
+        useMaterial3: true,
+      ),
+    );
   }
 
   updateFilters() {
@@ -47,6 +59,14 @@ class PokemonsController extends GetxController {
 
     filters.sort((a, b) => b['counter'].compareTo(a['counter']));
     this.filters = filters;
+    updateTheme();
+    update();
+  }
+
+  disableAllFilters() {
+    for (var filter in filters) {
+      filter['isSelected'] = false;
+    }
     update();
   }
 
@@ -87,6 +107,8 @@ class PokemonsController extends GetxController {
       {'pokemonId': pokemon.pokemonId},
     );
     pokemonsInPokedex.removeWhere((e) => e.pokemonId == pokemon.pokemonId);
+    pokemonsSearchController.clear();
+    searchPokemons('');
     updateFilters();
     update();
   }
