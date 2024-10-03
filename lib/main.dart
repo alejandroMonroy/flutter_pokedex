@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pokedex/services/sqflite_service.dart';
+import 'package:flutter_pokedex/views/pokemons_view.dart';
+import 'package:get/get.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SqfliteService.initDatabase();
   runApp(const Pokedex());
 }
 
@@ -9,28 +14,14 @@ class Pokedex extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Pokédex Code Challenge',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorSchemeSeed: Colors.red,
         useMaterial3: true,
       ),
-      home: const Home(),
-    );
-  }
-}
-
-class Home extends StatelessWidget {
-  const Home({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Pokédex Code Challenge'),
-      ),
-      body: const Center(child: Text('Lee el README para comenzar')),
+      defaultTransition: Transition.noTransition,
+      home: const PokemonsView(),
     );
   }
 }

@@ -1,0 +1,20 @@
+const pokemoncolors = [
+  {"name": "bug", "color": 0xFF94BC4A},
+  {"name": "dark", "color": 0xFF736C75},
+  {"name": "dragon", "color": 0xFF6A7BAF},
+  {"name": "electric", "color": 0xFFE5C531},
+  {"name": "fairy", "color": 0xFFE397D1},
+  {"name": "fighting", "color": 0xFFCB5F48},
+  {"name": "fire", "color": 0xFFEA7A3C},
+  {"name": "flying", "color": 0xFF7DA6DE},
+  {"name": "ghost", "color": 0xFF846AB6},
+  {"name": "grass", "color": 0xFF71C558},
+  {"name": "ground", "color": 0xFFCC9F4F},
+  {"name": "ice", "color": 0xFF70CBD4},
+  {"name": "normal", "color": 0xFFAAB09F},
+  {"name": "poison", "color": 0xFFB468B7},
+  {"name": "psychic", "color": 0xFFE5709B},
+  {"name": "rock", "color": 0xFFB2A061},
+  {"name": "steel", "color": 0xFF89A1B0},
+  {"name": "water", "color": 0xFF539AE2}
+];
