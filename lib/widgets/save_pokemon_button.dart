@@ -14,11 +14,13 @@ class SavePokemonButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PokemonsController>(builder: (controller) {
+      final bool isSaved = controller.pokemonsInPokedex.firstWhereOrNull(
+              (poke) => poke.pokemonId == pokemon.pokemonId) !=
+          null;
+
       return IconButton(
         onPressed: () {
-          if (controller.pokemonsInPokedex.firstWhereOrNull(
-                  (poke) => poke.pokemonId == pokemon.pokemonId) !=
-              null) {
+          if (isSaved) {
             Get.defaultDialog(
               titlePadding: const EdgeInsets.all(16.0),
               contentPadding: const EdgeInsets.all(16.0),
@@ -41,19 +43,9 @@ class SavePokemonButton extends StatelessWidget {
           }
         },
         icon: Icon(
-          controller.pokemonsInPokedex.firstWhereOrNull(
-                      (poke) => poke.pokemonId == pokemon.pokemonId) !=
-                  null
-              ? Icons.star_rounded
-              : Icons.star_outline_rounded,
-          color: controller.pokemonsInPokedex.firstWhereOrNull(
-                      (poke) => poke.pokemonId == pokemon.pokemonId) !=
-                  null
-              ? Colors.yellow
-              : Colors.black26,
-          shadows: controller.pokemonsInPokedex.firstWhereOrNull(
-                      (poke) => poke.pokemonId == pokemon.pokemonId) !=
-                  null
+          isSaved ? Icons.star_rounded : Icons.star_outline_rounded,
+          color: isSaved ? Colors.yellow : Colors.black26,
+          shadows: isSaved
               ? [
                   const Shadow(
                     blurRadius: 24.0,

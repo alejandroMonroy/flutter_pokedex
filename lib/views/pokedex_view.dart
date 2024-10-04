@@ -57,32 +57,6 @@ class _PokedexViewState extends State<PokedexView> {
             child: Text('Filter by Pokemon type:'),
           ),
           const SizedBox(height: 8.0),
-          GetBuilder<PokemonsController>(
-            builder: (controller) {
-              return SizedBox(
-                height: 40.0,
-                child: ListView.separated(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return FilterChip(
-                      label: Text(controller.filters[index]['name']),
-                      avatar: Text('${controller.filters[index]['counter']}'),
-                      selected: controller.filters[index]['isSelected'],
-                      showCheckmark: false,
-                      onSelected: (bool selected) {
-                        controller
-                            .enableFilter(controller.filters[index]['name']);
-                      },
-                    );
-                  },
-                  itemCount: controller.filters.length,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const SizedBox(width: 8.0),
-                ),
-              );
-            },
-          ),
           const SizedBox(height: 16.0),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
