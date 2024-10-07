@@ -13,6 +13,109 @@ class PokemonView extends StatelessWidget {
     required this.pokemon,
   });
 
+  Widget _name() {
+    return Text(
+      pokemon.name.toUpperCase(),
+      textAlign: TextAlign.center,
+      overflow: TextOverflow.ellipsis,
+      style: const TextStyle(
+        fontSize: 40.0,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+        shadows: [
+          Shadow(
+            blurRadius: 16.0,
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _navigationBack() {
+    return IconButton(
+      onPressed: () {
+        Get.back();
+      },
+      icon: const Icon(
+        Icons.arrow_back_ios_rounded,
+        color: Colors.white,
+        size: 16.0,
+      ),
+    );
+  }
+
+  Widget _type() {
+    return Text(
+      pokemon.typeNames.first.toUpperCase(),
+      textAlign: TextAlign.center,
+      style: const TextStyle(color: Colors.white),
+    );
+  }
+
+  Widget _topInfo() {
+    return Positioned(
+      top: 16.0,
+      left: 8.0,
+      right: 8.0,
+      child: SizedBox(
+        height: 96.0,
+        child: Column(
+          children: [
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _navigationBack(),
+                  Expanded(child: _type()),
+                  SavePokemonButton(pokemon: pokemon),
+                ],
+              ),
+            ),
+            Expanded(child: _name()),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _counter(String title, int value) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          '$value',
+          style: const TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 16.0,
+          ),
+        ),
+        const SizedBox(height: 8.0),
+        Text(title),
+      ],
+    );
+  }
+
+  Widget _bottomInfo() {
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: SizedBox(
+        height: 80.0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _counter('Height', pokemon.height),
+            _counter('Nº', pokemon.pokemonId),
+            _counter('Weight', pokemon.weight),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,121 +158,8 @@ class PokemonView extends StatelessWidget {
                           fit: BoxFit.contain,
                         ),
                       ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: SizedBox(
-                          height: 80.0,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '${pokemon.height}',
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 16.0,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8.0),
-                                  const Text('Height'),
-                                ],
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '${pokemon.pokemonId}',
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 16.0,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8.0),
-                                  const Text('Nº'),
-                                ],
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '${pokemon.weight}',
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 16.0,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8.0),
-                                  const Text('Weight'),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 16.0,
-                        left: 8.0,
-                        right: 8.0,
-                        child: SizedBox(
-                          height: 96.0,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {
-                                        Get.back();
-                                      },
-                                      icon: const Icon(
-                                        Icons.arrow_back_ios_rounded,
-                                        color: Colors.white,
-                                        size: 16.0,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        pokemon.typeNames.first.toUpperCase(),
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            color: Colors.white),
-                                      ),
-                                    ),
-                                    SavePokemonButton(pokemon: pokemon),
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  pokemon.name.toUpperCase(),
-                                  textAlign: TextAlign.center,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    fontSize: 40.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    shadows: [
-                                      Shadow(
-                                        blurRadius: 16.0,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      _bottomInfo(),
+                      _topInfo(),
                     ],
                   ),
                 ),
