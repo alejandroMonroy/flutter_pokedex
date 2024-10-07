@@ -57,24 +57,6 @@ class PokeApiService {
     }
   }
 
-  static Future<Map<String, dynamic>> fetchPokemonById(String id) async {
-    try {
-      final Response response = await get(
-        Uri.parse(
-          '${PokeApiConstants.baseUrl}${PokeApiConstants.pokemonsEndpoint}/$id',
-        ),
-      );
-
-      if (response.statusCode == 200) {
-        return jsonDecode(response.body);
-      } else {
-        throw 'Failed to load pokemon';
-      }
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
-
   static Future<Map<String, dynamic>> fetchPokemonByUrl(String url) async {
     try {
       final Response response = await get(
